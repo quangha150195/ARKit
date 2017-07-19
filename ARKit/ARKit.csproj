@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="Assets\_Scripts\Button.cs" />
     <Compile Include="Assets\_Scripts\MainScene.cs" />
+    <Compile Include="Assets\_Scripts\ObjectController.cs" />
     <Compile Include="Assets\Examples\BallMaker.cs" />
     <Compile Include="Assets\Examples\BallMover.cs" />
     <Compile Include="Assets\Examples\Ballz.cs" />
