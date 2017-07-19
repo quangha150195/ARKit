@@ -118,9 +118,14 @@
     <Compile Include="Assets\Plugins\iOS\UnityARKit\Utility\UnityARAnchorManager.cs" />
     <Compile Include="Assets\Plugins\iOS\UnityARKit\Utility\UnityARMatrixOps.cs" />
     <Compile Include="Assets\Plugins\iOS\UnityARKit\Utility\UnityARUtility.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\iTween.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\MoveSample.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\RotateSample.cs" />
+    <Compile Include="Assets\Plugins\Pixelplacement\iTween\Sample\SampleInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Examples\InstancedSurfaceShader.shader" />
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileARShadow.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileOcclusion.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />

@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Examples\InstancedSurfaceShader.shader" />
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileARShadow.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileOcclusion.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />
