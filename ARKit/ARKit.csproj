@@ -93,7 +93,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\_Scripts\Button.cs" />
     <Compile Include="Assets\_Scripts\MainScene.cs" />
     <Compile Include="Assets\_Scripts\ObjectController.cs" />
     <Compile Include="Assets\Examples\BallMaker.cs" />
