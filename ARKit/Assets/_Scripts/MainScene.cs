@@ -11,9 +11,13 @@ public class MainScene : MonoBehaviour {
     private Toggle m_BtnHiddemScrollView;
 
     private GameObject m_btnHidden;
+    private float m_PosXScroll;
+    private float m_PosXBtnHidden;
     // Use this for initialization
     void Start () {
-        m_btnHidden = m_BtnHiddemScrollView.GetComponentInChildren<Image>().gameObject; 
+        m_btnHidden = m_BtnHiddemScrollView.GetComponentInChildren<Image>().gameObject;
+        m_PosXScroll = m_ScrollViewObject.transform.position.x;
+        m_PosXBtnHidden = m_btnHidden.transform.position.x;
     }
 	
 	// Update is called once per frame
@@ -30,15 +34,14 @@ public class MainScene : MonoBehaviour {
     {
         if(m_BtnHiddemScrollView.isOn)
         {
-            iTween.MoveTo(m_ScrollViewObject, iTween.Hash("x", m_ScrollViewObject.transform.position.x + 250, "time", 1.0f));
-            Debug.Log(m_btnHidden.transform.position);
-            iTween.MoveTo(m_btnHidden, iTween.Hash("x", m_btnHidden.transform.position.x + 160, "time", 1.0f));
+            iTween.MoveTo(m_ScrollViewObject, iTween.Hash("x", m_PosXScroll + 250, "time", 1.0f));
+            iTween.MoveTo(m_btnHidden, iTween.Hash("x", m_PosXBtnHidden + 160, "time", 1.0f));
             iTween.RotateTo(m_btnHidden , iTween.Hash("y", 180, "time", .5f));
         }
         else
         {
-            iTween.MoveTo(m_ScrollViewObject, iTween.Hash("x", 1222.5f, "time", 1.0f));
-            iTween.MoveTo(m_btnHidden, iTween.Hash("x",1140.0f, "time", 1.0f));
+            iTween.MoveTo(m_ScrollViewObject, iTween.Hash("x", m_PosXScroll, "time", 1.0f));
+            iTween.MoveTo(m_btnHidden, iTween.Hash("x", m_PosXBtnHidden, "time", 1.0f));
             iTween.RotateTo(m_btnHidden, iTween.Hash("y", 0, "time", .5f));           
         }
     }
