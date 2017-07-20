@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+namespace UnityEngine.XR.iOS
+{
 public class MainScene : MonoBehaviour {
     [SerializeField]
     private GameObject m_ScrollViewObject;
@@ -19,15 +21,30 @@ public class MainScene : MonoBehaviour {
         m_PosXScroll = m_ScrollViewObject.transform.position.x;
         m_PosXBtnHidden = m_btnHidden.transform.position.x;
     }
-	
-	// Update is called once per frame
+
+        bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes, Transform trans)
+        {
+            List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
+            if (hitResults.Count > 0) {
+                foreach (var hitResult in hitResults) {
+                    Debug.Log ("Got hit!");
+                    trans.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
+                    trans.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);            
+                    return true;
+                }
+            }
+            return false;
+        }
+                
+
+	// Update is called once per framea
 	void Update () {
-		
 	}
 
     public void addObject(string _name)
     {
-        GameObject gameObj = Instantiate(Resources.Load("_Model/" + _name),new Vector3(0,0,100), Quaternion.identity) as GameObject;
+            
+            GameObject gameObj = Instantiate(Resources.Load("_Model/" + _name)) as GameObject;
     }
 
     public void showScrollView()
@@ -46,5 +63,5 @@ public class MainScene : MonoBehaviour {
         }
     }
 
-
+    }
 }
