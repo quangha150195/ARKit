@@ -39,12 +39,26 @@ public class MainScene : MonoBehaviour {
 
 	// Update is called once per framea
 	void Update () {
+            
 	}
 
-    public void addObject(string _name)
+        public void addObject(string _name)
     {
-            
-            GameObject gameObj = Instantiate(Resources.Load("_Model/" + _name)) as GameObject;
+            Vector3 screenPosition = Camera.main.ScreenToViewportPoint(new Vector3(Screen.width/2,Screen.height/2,1));
+            ARPoint point = new ARPoint {
+                x = screenPosition.x,
+                y = screenPosition.y
+            }; 
+
+            List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, 
+                ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent);
+            if (hitResults.Count > 0) {
+                foreach (var hitResult in hitResults) {
+                    Vector3 position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
+                    GameObject gameObj = Instantiate(Resources.Load("_Model/" + _name), position, Quaternion.identity) as GameObject;
+                    break;
+                }
+            }
     }
 
     public void showScrollView()

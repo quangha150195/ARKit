@@ -10,19 +10,19 @@ public class ObjectController : MonoBehaviour {
 
     public Transform m_HitTransform;
 
-    bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
-    {
-        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
-        if (hitResults.Count > 0) {
-            foreach (var hitResult in hitResults) {
-                Debug.Log ("Got hit!");
-                m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
-                m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);            
-                return true;
-            }
-        }
-        return false;
-    }
+//    bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
+//    {
+//        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
+//        if (hitResults.Count > 0) {
+//            foreach (var hitResult in hitResults) {
+//                Debug.Log ("Got hit!");
+//                m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
+//                m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);            
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
     // Use this for initialization
     void Start () {
 		
@@ -38,33 +38,33 @@ public class ObjectController : MonoBehaviour {
 
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
-        ARPoint point = new ARPoint {
-            x = offset.x,
-            y = offset.y
-        };
-        // prioritize reults types
-        ARHitTestResultType[] resultTypes = {
-            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
-            // if you want to use infinite planes use this:
-            //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
-            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-        }; 
-
-        foreach (ARHitTestResultType resultType in resultTypes)
-        {
-            if (HitTestWithResultType (point, resultType))
-            {
-                return;
-            }
-        }
+//        ARPoint point = new ARPoint {
+//            x = offset.x,
+//            y = offset.y
+//        };
+//        // prioritize reults types
+//        ARHitTestResultType[] resultTypes = {
+//            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
+//            // if you want to use infinite planes use this:
+//            //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+//            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, a
+//            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
+//        }; 
+//
+//        foreach (ARHitTestResultType resultType in resultTypes)
+//        {
+//            if (HitTestWithResultType (point, resultType))
+//            {
+//                return;
+//            }
+//        }
     }
 
     void OnMouseDrag()
     {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, screenPoint.y, screenPoint.z);
 
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint);
+        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         transform.position = curPosition;
 
         ARPoint point = new ARPoint {
@@ -72,22 +72,33 @@ public class ObjectController : MonoBehaviour {
             x = curPosition.x,
             y = curPosition.y
         };
-        // prioritize reults types
-        ARHitTestResultType[] resultTypes = {
-            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
-            // if you want to use infinite planes use this:
-            //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
-            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-        }; 
 
-        foreach (ARHitTestResultType resultType in resultTypes)
-        {
-            if (HitTestWithResultType (point, resultType))
-            {
-                return;
+        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, 
+            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent);
+        if (hitResults.Count > 0) {
+            foreach (var hitResult in hitResults) {
+                Vector3 position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
+                gameObject.transform.position = Vector3.MoveTowards (gameObject.transform.position, position, 0.05f);
+                break;
             }
         }
 
+//        // prioritize reults types
+//        ARHitTestResultType[] resultTypes = {
+//            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
+//            // if you want to use infinite planes use this:
+//            //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
+//            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
+//            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
+//        }; 
+//
+//        foreach (ARHitTestResultType resultType in resultTypes)
+//        {
+//            if (HitTestWithResultType (point, resultType))
+//            {
+//                return;
+//            }
+//        }
+//
     }
 }
