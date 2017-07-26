@@ -10,7 +10,7 @@ public class ObjectController : MonoBehaviour {
     private Vector3 screenPoint;
     private Vector3 offset;
 
-    private bool m_IsRotating;
+    private bool m_IsRotating= false;
 
     private float m_Sensitivity = 0.4f;
     private Vector3 m_MouseReference;
@@ -32,21 +32,35 @@ public class ObjectController : MonoBehaviour {
             {
                 if(hitInfo.collider.tag == "rotate")
                 {
-                    rotation();
+                    m_IsRotating = true;
                 }
             }
         }
+        //else
+        //{
+        //    m_IsRotating = false;
+        //}
     }
 
     void OnMouseDown()
     {
-        m_IsRotating = true;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
     }
 
     void OnMouseDrag()
-    {      
+    {
+        if (m_IsRotating)
+        {
+            m_MouseOffset = (Input.mousePosition - m_MouseReference);
+            m_Rotation.y = -(m_MouseOffset.x + m_MouseOffset.z) * m_Sensitivity;
+
+            gameObject.transform.Rotate(m_Rotation);
+
+            m_MouseReference = Input.mousePosition;
+
+        }
+        else
         {
             Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
@@ -76,20 +90,6 @@ public class ObjectController : MonoBehaviour {
     public void OnMouseUp()
     {
         m_IsRotating = false;
-    }
-
-    public void rotation()
-    {
-        //if (m_IsRotating)
-        {
-            m_MouseOffset = (Input.mousePosition - m_MouseReference);
-            m_Rotation.y = -(m_MouseOffset.x + m_MouseOffset.z) * m_Sensitivity;
-
-            gameObject.transform.Rotate(m_Rotation);
-
-            m_MouseReference = Input.mousePosition;
-
-        }
     }
 
     public void scale()
