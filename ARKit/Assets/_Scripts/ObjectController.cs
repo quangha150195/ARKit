@@ -5,99 +5,96 @@ using UnityEngine.XR.iOS;
 
 public class ObjectController : MonoBehaviour {
 
+    public Transform m_HitTransform;
+
     private Vector3 screenPoint;
     private Vector3 offset;
 
-    public Transform m_HitTransform;
+    private bool m_IsRotating;
 
-//    bool HitTestWithResultType (ARPoint point, ARHitTestResultType resultTypes)
-//    {
-//        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, resultTypes);
-//        if (hitResults.Count > 0) {
-//            foreach (var hitResult in hitResults) {
-//                Debug.Log ("Got hit!");
-//                m_HitTransform.position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
-//                m_HitTransform.rotation = UnityARMatrixOps.GetRotation (hitResult.worldTransform);            
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    private float m_Sensitivity = 0.4f;
+    private Vector3 m_MouseReference;
+    private Vector3 m_MouseOffset;
+    private Vector3 m_Rotation = Vector3.zero;
+
     // Use this for initialization
     void Start () {
+
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	}
+
+    // Update is called once per frame
+    void Update() {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hitInfo;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
+            {
+                if(hitInfo.collider.tag == "rotate")
+                {
+                    rotation();
+                }
+            }
+        }
+    }
 
     void OnMouseDown()
     {
+        m_IsRotating = true;
         screenPoint = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-
-//        ARPoint point = new ARPoint {
-//            x = offset.x,
-//            y = offset.y
-//        };
-//        // prioritize reults types
-//        ARHitTestResultType[] resultTypes = {
-//            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
-//            // if you want to use infinite planes use this:
-//            //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-//            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, a
-//            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-//        }; 
-//
-//        foreach (ARHitTestResultType resultType in resultTypes)
-//        {
-//            if (HitTestWithResultType (point, resultType))
-//            {
-//                return;
-//            }
-//        }
     }
 
     void OnMouseDrag()
-    {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
+    {      
+        {
+            Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
-        Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
-        transform.position = curPosition;
+            Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
+            transform.position = curPosition;
 
-        ARPoint point = new ARPoint {
-            
-            x = curPosition.x,
-            y = curPosition.y
-        };
+            ARPoint point = new ARPoint
+            {
 
-        List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface ().HitTest (point, 
-            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent);
-        if (hitResults.Count > 0) {
-            foreach (var hitResult in hitResults) {
-                Vector3 position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
-                break;
+                x = curPosition.x,
+                y = curPosition.y
+            };
+
+            List<ARHitTestResult> hitResults = UnityARSessionNativeInterface.GetARSessionNativeInterface().HitTest(point,
+                ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent);
+            if (hitResults.Count > 0)
+            {
+                foreach (var hitResult in hitResults)
+                {
+                    Vector3 position = UnityARMatrixOps.GetPosition(hitResult.worldTransform);
+                    break;
+                }
             }
         }
+    }
 
-//        // prioritize reults types
-//        ARHitTestResultType[] resultTypes = {
-//            ARHitTestResultType.ARHitTestResultTypeExistingPlaneUsingExtent, 
-//            // if you want to use infinite planes use this:
-//            //ARHitTestResultType.ARHitTestResultTypeExistingPlane,
-//            ARHitTestResultType.ARHitTestResultTypeHorizontalPlane, 
-//            ARHitTestResultType.ARHitTestResultTypeFeaturePoint
-//        }; 
-//
-//        foreach (ARHitTestResultType resultType in resultTypes)
-//        {
-//            if (HitTestWithResultType (point, resultType))
-//            {
-//                return;
-//            }
-//        }
-//
+    public void OnMouseUp()
+    {
+        m_IsRotating = false;
+    }
+
+    public void rotation()
+    {
+        //if (m_IsRotating)
+        {
+            m_MouseOffset = (Input.mousePosition - m_MouseReference);
+            m_Rotation.y = -(m_MouseOffset.x + m_MouseOffset.z) * m_Sensitivity;
+
+            gameObject.transform.Rotate(m_Rotation);
+
+            m_MouseReference = Input.mousePosition;
+
+        }
+    }
+
+    public void scale()
+    {
+        Vector3 newScale = gameObject.transform.localScale;
+
     }
 }
