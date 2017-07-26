@@ -23,3 +23,6 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/UnityAROcclusion.unity
     guid: 7f026c59fb9d6489ab924c6e0e119760
+  - enabled: 0
+    path: Assets/_Scenes/Test.unity
+    guid: 7f8565cd193904033aec144a0af9e626

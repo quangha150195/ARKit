@@ -56,6 +56,7 @@ public class MainScene : MonoBehaviour {
                 foreach (var hitResult in hitResults) {
                     Vector3 position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
                     GameObject gameObj = Instantiate(Resources.Load("_Model/" + _name), position, Quaternion.identity) as GameObject;
+                    iTween.ScaleFrom(gameObj, Vector3.zero, 1);
                     break;
                 }
             }

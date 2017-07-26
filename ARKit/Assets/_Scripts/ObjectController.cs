@@ -62,7 +62,7 @@ public class ObjectController : MonoBehaviour {
 
     void OnMouseDrag()
     {
-        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, screenPoint.y, screenPoint.z);
+        Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 
         Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
         transform.position = curPosition;
@@ -78,7 +78,6 @@ public class ObjectController : MonoBehaviour {
         if (hitResults.Count > 0) {
             foreach (var hitResult in hitResults) {
                 Vector3 position = UnityARMatrixOps.GetPosition (hitResult.worldTransform);
-                gameObject.transform.position = Vector3.MoveTowards (gameObject.transform.position, position, 0.05f);
                 break;
             }
         }
