@@ -4,14 +4,17 @@ using UnityEngine;
 using UnityEngine.XR.iOS;
 
 public class ObjectController : MonoBehaviour {
+    [SerializeField]
+    private Transform m_HitTransform;
+    [SerializeField]
+    private GameObject m_BtnMenu;
 
-    public Transform m_HitTransform;
 
     private Vector3 screenPoint;
     private Vector3 offset;
 
     private bool m_IsRotating= false;
-
+    private bool m_IsScaling = false;
     private float m_Sensitivity = 0.4f;
     private Vector3 m_MouseReference;
     private Vector3 m_MouseOffset;
@@ -34,12 +37,25 @@ public class ObjectController : MonoBehaviour {
                 {
                     m_IsRotating = true;
                 }
+                else if(hitInfo.collider.tag == "delete")
+                    {
+                        Destroy(this.gameObject);
+                    }
+                    else if(hitInfo.collider.tag == "ok")
+                        {
+                            m_BtnMenu.SetActive(false);
+                        }
+                        else if(hitInfo.collider.tag == "scale")
+                            {
+                                m_IsScaling = true;
+                            }
+                            else if(hitInfo.collider.tag == "Object")
+                                {
+                                    m_BtnMenu.SetActive(true);
+                                }
+
             }
         }
-        //else
-        //{
-        //    m_IsRotating = false;
-        //}
     }
 
     void OnMouseDown()
@@ -54,7 +70,7 @@ public class ObjectController : MonoBehaviour {
         {
             m_MouseOffset = (Input.mousePosition - m_MouseReference);
             m_Rotation.y = -(m_MouseOffset.x + m_MouseOffset.z) * m_Sensitivity;
-
+           // m_Rotation.z = -(m_MouseOffset.x + m_MouseOffset.y) * m_Sensitivity;
             gameObject.transform.Rotate(m_Rotation);
 
             m_MouseReference = Input.mousePosition;
@@ -95,6 +111,5 @@ public class ObjectController : MonoBehaviour {
     public void scale()
     {
         Vector3 newScale = gameObject.transform.localScale;
-
     }
 }

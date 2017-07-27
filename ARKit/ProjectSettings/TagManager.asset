@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - rotate
+  - scale
+  - delete
+  - ok
+  - Object
   layers:
   - Default
   - TransparentFX
