@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 347512979}
   - component: {fileID: 347512978}
   m_Layer: 0
-  m_Name: GeneratePlanes
+  m_Name: Planes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,7 +987,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1144174131}
   m_Direction: 0
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999998
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1701,7 +1701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1187494120}
   m_Layer: 0
-  m_Name: CameraParent
+  m_Name: Main Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

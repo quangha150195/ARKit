@@ -132,13 +132,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="ARKit.Plugins.csproj">
-      <Project>{23C1C80A-62BE-0123-3052-98EFE6CC0250}</Project>
-      <Name>ARKit.Plugins</Name>
-    </ProjectReference>
     <ProjectReference Include="ARKit.csproj">
       <Project>{75ECB70D-462F-8D9F-5FD4-DF43B43BC811}</Project>
       <Name>ARKit</Name>
+    </ProjectReference>
+    <ProjectReference Include="ARKit.Plugins.csproj">
+      <Project>{23C1C80A-62BE-0123-3052-98EFE6CC0250}</Project>
+      <Name>ARKit.Plugins</Name>
     </ProjectReference>
     <ProjectReference Include="ARKit.Editor.Plugins.csproj">
       <Project>{8199AD97-2D85-DB10-CEC5-E1FE84AA995F}</Project>
@@ -154,6 +154,7 @@
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileARShadow.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileOcclusion.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />
+    <None Include="Assets\Report.txt" />
     <None Include="Assets\SCENES.txt" />
     <None Include="Assets\TUTORIAL.txt" />
   </ItemGroup>

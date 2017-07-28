@@ -2,21 +2,21 @@
 -target:library
 -nowarn:0169
 -langversion:4
--out:'Temp/Assembly-CSharp.dll'
+-out:Temp\Assembly-CSharp.dll
 -unsafe
--r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll'
--r:'/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll'
--r:'Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll'
--r:'Library/FacebookSDK/Facebook.Unity.Settings.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll'
--r:'/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll'
--r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll'
--r:'/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll'
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll"
+-r:"C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll"
+-r:Library\ScriptAssemblies\Assembly-CSharp-firstpass.dll
+-r:Library/FacebookSDK/Facebook.Unity.Settings.dll
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
 -define:UNITY_5_3_OR_NEWER
 -define:UNITY_5_4_OR_NEWER
 -define:UNITY_5_5_OR_NEWER
@@ -100,7 +100,7 @@
 -define:UNITY_IPHONE
 -define:UNITY_IPHONE_API
 -define:SUPPORT_MULTIPLE_DISPLAYS
--define:ENABLE_MONO
+-define:ENABLE_IL2CPP
 -define:NET_2_0_SUBSET
 -define:ENABLE_PROFILER
 -define:DEBUG
@@ -108,38 +108,39 @@
 -define:UNITY_ASSERTIONS
 -define:UNITY_EDITOR
 -define:UNITY_EDITOR_64
--define:UNITY_EDITOR_OSX
+-define:UNITY_EDITOR_WIN
 -define:ENABLE_NATIVE_ARRAY_CHECKS
 -define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
 -define:ENABLE_IOS_ON_DEMAND_RESOURCES
 -define:ENABLE_IOS_APP_SLICING
 -define:UNITY_HAS_GOOGLEVR
-'Assets/_Scripts/MainScene.cs'
-'Assets/_Scripts/ObjectController.cs'
-'Assets/Examples/BallMaker.cs'
-'Assets/Examples/BallMover.cs'
-'Assets/Examples/Ballz.cs'
-'Assets/Examples/ModeSwitcher.cs'
-'Assets/HSVPicker/Enums/ColorValues.cs'
-'Assets/HSVPicker/Events/ColorChangedEvent.cs'
-'Assets/HSVPicker/Events/HSVChangedEvent.cs'
-'Assets/HSVPicker/Other/ColorPickerTester.cs'
-'Assets/HSVPicker/Other/TiltWindow.cs'
-'Assets/HSVPicker/UI/ColorImage.cs'
-'Assets/HSVPicker/UI/ColorLabel.cs'
-'Assets/HSVPicker/UI/ColorPicker.cs'
-'Assets/HSVPicker/UI/ColorPresets.cs'
-'Assets/HSVPicker/UI/ColorSlider.cs'
-'Assets/HSVPicker/UI/ColorSliderImage.cs'
-'Assets/HSVPicker/UI/HexColorField.cs'
-'Assets/HSVPicker/UI/SVBoxSlider.cs'
-'Assets/HSVPicker/UtilityScripts/BoxSlider.cs'
-'Assets/HSVPicker/UtilityScripts/HSVUtil.cs'
-'Assets/ParticlePainter.cs'
-'Assets/UnityARAmbient.cs'
--r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Runtime.Serialization.dll'
--r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/System.Xml.Linq.dll'
--r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.dll'
--r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/UnityScript.Lang.dll'
--r:'/Applications/Unity/Unity.app/Contents/Mono/lib/mono/unity/Boo.Lang.dll'
+Assets/_Scripts/MainScene.cs
+Assets/_Scripts/ObjectController.cs
+Assets/Examples/BallMaker.cs
+Assets/Examples/BallMover.cs
+Assets/Examples/Ballz.cs
+Assets/Examples/ModeSwitcher.cs
+Assets/HSVPicker/Enums/ColorValues.cs
+Assets/HSVPicker/Events/ColorChangedEvent.cs
+Assets/HSVPicker/Events/HSVChangedEvent.cs
+Assets/HSVPicker/Other/ColorPickerTester.cs
+Assets/HSVPicker/Other/TiltWindow.cs
+Assets/HSVPicker/UI/ColorImage.cs
+Assets/HSVPicker/UI/ColorLabel.cs
+Assets/HSVPicker/UI/ColorPicker.cs
+Assets/HSVPicker/UI/ColorPresets.cs
+Assets/HSVPicker/UI/ColorSlider.cs
+Assets/HSVPicker/UI/ColorSliderImage.cs
+Assets/HSVPicker/UI/HexColorField.cs
+Assets/HSVPicker/UI/SVBoxSlider.cs
+Assets/HSVPicker/UtilityScripts/BoxSlider.cs
+Assets/HSVPicker/UtilityScripts/HSVUtil.cs
+Assets/ParticlePainter.cs
+Assets/UnityARAmbient.cs
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\UnityScript.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\UnityScript.Lang.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\Boo.Lang.dll"
 -sdk:unity

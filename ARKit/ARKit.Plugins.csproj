@@ -129,6 +129,7 @@
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileARShadow.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\MobileOcclusion.shader" />
     <None Include="Assets\Plugins\iOS\UnityARKit\Shaders\YUVShader.shader" />
+    <None Include="Assets\Report.txt" />
     <None Include="Assets\SCENES.txt" />
     <None Include="Assets\TUTORIAL.txt" />
   </ItemGroup>

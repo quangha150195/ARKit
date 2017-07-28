@@ -1,0 +1,14 @@
+ARKit: 
+- iOS 11 or later
+- XCode 9 
+- device supports ARKit (IPhone 6s or later)
+- Unity 5.6.2 or higher.
+
+* MainScene: 
+- ScrollView
+- Feature:
++ Generate plane.
++ Add object on plane.
++ Rotate object.
++ Delete object.
++ Move object.
