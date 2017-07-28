@@ -127,7 +127,7 @@ dd6501652c91cb163a39e051d37a965f Assembly-CSharp.dll:.Ballz
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:UnityEngine.XR.iOS.UnityARAmbient
 3c131bc1fcd62a99173616f1006723eb Assembly-CSharp.dll:.SVBoxSlider
 2041c871bc804feaa14f1713988c5c33 Assembly-CSharp-firstpass.dll:UnityEngine.XR.iOS.UnityARVideo
-f8e1023e5cf37242261f5d0e232b4fe5 Assembly-CSharp.dll:.ObjectController
+5d4a9875b1755d016a5f31c753048412 Assembly-CSharp.dll:.ObjectController
 5511a49b5104d2e14b66af50a17125f0 Assembly-CSharp.dll:.ParticlePainter
 e353101906474689643fc3c6d0a3ba4a Assembly-CSharp.dll:.ColorPicker
 32e8fe00b63ed946490b898f6024a2f2 Facebook.Unity.Settings.dll:Facebook.Unity.Settings.FacebookSettings

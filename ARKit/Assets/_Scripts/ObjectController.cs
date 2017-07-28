@@ -5,10 +5,11 @@ using UnityEngine.XR.iOS;
 
 public class ObjectController : MonoBehaviour {
     [SerializeField]
-    private Transform m_HitTransform;
+    private Transform m_HitTransform = null;
     [SerializeField]
     private GameObject m_BtnMenu;
-
+    [SerializeField]
+    private GameObject m_BtnRotate;
 
     private Vector3 screenPoint;
     private Vector3 offset;
@@ -19,6 +20,7 @@ public class ObjectController : MonoBehaviour {
     private Vector3 m_MouseReference;
     private Vector3 m_MouseOffset;
     private Vector3 m_Rotation = Vector3.zero;
+
 
     // Use this for initialization
     void Start () {
@@ -33,27 +35,33 @@ public class ObjectController : MonoBehaviour {
             RaycastHit hitInfo;
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo))
             {
-                if(hitInfo.collider.tag == "rotate")
+                Transform colliderTrans = hitInfo.collider.transform;
+                if (colliderTrans.parent != null && colliderTrans.parent.parent != null && colliderTrans.parent.parent == transform)
                 {
-                    m_IsRotating = true;
-                }
-                else if(hitInfo.collider.tag == "delete")
+                    if (hitInfo.collider.tag == "rotate")
                     {
-                        Destroy(this.gameObject);
+                        m_IsRotating = true;
+                        m_BtnRotate.SetActive(false);
                     }
-                    else if(hitInfo.collider.tag == "ok")
-                        {
-                            m_BtnMenu.SetActive(false);
-                        }
-                        else if(hitInfo.collider.tag == "scale")
-                            {
-                                m_IsScaling = true;
-                            }
-                            else if(hitInfo.collider.tag == "Object")
-                                {
-                                    m_BtnMenu.SetActive(true);
-                                }
+                    else if (hitInfo.collider.tag == "delete")
+                    {
+                        Destroy(m_HitTransform.gameObject);
+                    }
+                    else if (hitInfo.collider.tag == "ok")
+                    {
+                        m_BtnMenu.SetActive(false);
+                    }
+                    else if (hitInfo.collider.tag == "scale")
+                    {
+                        m_IsScaling = true;
+                    }
 
+                }
+                else if (colliderTrans != null && colliderTrans == transform && hitInfo.collider.tag == "Object")
+                {
+                    m_BtnMenu.SetActive(true);
+                }
+               
             }
         }
     }
@@ -75,6 +83,13 @@ public class ObjectController : MonoBehaviour {
 
             m_MouseReference = Input.mousePosition;
 
+        }
+        else if (m_IsScaling)
+        {
+            m_MouseOffset = (Input.mousePosition - m_MouseReference);
+
+            gameObject.transform.localScale += m_MouseOffset * m_Sensitivity/10;
+            m_MouseReference = Input.mousePosition;
         }
         else
         {
@@ -106,6 +121,7 @@ public class ObjectController : MonoBehaviour {
     public void OnMouseUp()
     {
         m_IsRotating = false;
+        m_BtnRotate.SetActive(true);
     }
 
     public void scale()
